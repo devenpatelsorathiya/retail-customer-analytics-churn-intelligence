@@ -1,179 +1,372 @@
-# 🛒 Retail Customer Analytics & Churn Intelligence
+# 🛒 Retail Customer Analytics, Churn Intelligence & Automation System
 
 ## 📌 Project Overview
 
-This project focuses on analyzing retail transaction data to understand **customer behavior, sales performance, churn risk, and revenue impact**. The objective is to help retail businesses **identify high-risk customers, prioritize retention efforts, and make data-driven decisions** using analytics and machine learning.
+This project is an end-to-end Retail Customer Intelligence System that combines:
+
+* Data Analytics
+* Customer Segmentation (RFM)
+* Churn Risk Detection
+* Machine Learning Prediction
+* Revenue-at-Risk Analysis
+* Action Recommendation Engine
+* SQL Data Warehouse Integration
+* Power BI Business Dashboard
+* Automated Data Pipeline
+
+The goal is to help retail businesses reduce churn, protect revenue, and prioritize customer retention using data-driven intelligence.
 
 ---
 
-## 🎯 Business Problem
+# 🎯 Business Problem
 
-Retail businesses commonly struggle to:
+Retail companies struggle with:
 
-* Identify **high-value customers**
-* Detect **early signs of customer churn**
-* Understand which customer segments **generate or risk losing revenue**
-* Decide **where to focus retention efforts** effectively
+* Identifying high-value customers
+* Detecting early churn signals
+* Prioritizing retention efforts
+* Understanding revenue risk exposure
+* Making explainable ML-based decisions
 
-This project addresses these challenges using **structured data analysis, churn intelligence, and predictive modeling**.
-
----
-
-## 🗂️ Data Source
-
-* Retail transaction dataset containing:
-
-  * Invoices
-  * Products
-  * Customers
-  * Transaction dates
-  * Quantities
-  * Prices
-* Data processed using **Python** and stored in a **MySQL database** for scalable analysis
+This system solves those problems using structured analytics and predictive modeling.
 
 ---
 
-## ⚙️ Key Steps Performed
+# 🏗️ System Architecture
 
-### 1️⃣ Data Cleaning & Preparation
+```
+Raw Retail Data
+        ↓
+Data Cleaning (Python)
+        ↓
+RFM Analysis
+        ↓
+Churn Intelligence Engine
+        ↓
+Machine Learning Model
+        ↓
+Customer Priority Scoring
+        ↓
+MySQL Data Warehouse
+        ↓
+Power BI Dashboard
+        ↓
+Automated Decision & Action Recommendations
+```
 
-* Removed invalid and negative quantity records
+---
+
+# 🗂️ Data Source
+
+Retail transaction dataset containing:
+
+* Invoice Number
+* Product Description
+* Customer ID
+* Invoice Date
+* Quantity
+* Unit Price
+* Country
+
+Data is cleaned, transformed, and stored in MySQL for structured analytics.
+
+---
+
+# ⚙️ Project Workflow
+
+---
+
+## 1️⃣ Data Cleaning & Preparation (Python)
+
+* Removed negative quantity records
+* Removed cancelled invoices
 * Handled missing customer IDs
-* Created **total transaction amount** feature
-* Converted date fields into usable **time-based features**
-* Ensured clean, consistent, and analysis-ready data
+* Created `Total_Amount = Quantity × Unit Price`
+* Converted date columns
+* Created monthly and time-based features
 
-### 2️⃣ SQL Integration
+Libraries used:
 
-* Stored cleaned and transformed data in **MySQL**
-* Created analytical tables for **customer-level insights**
-* Used SQL queries for structured validation and analysis
-
----
-
-## 📊 Core Analytics Performed
-
-### 🔹 Sales & Revenue Analysis
-
-* Monthly sales trend analysis
-* Top-selling products by quantity and revenue
-* Country-wise revenue aggregation
-
-### 🔹 Customer Analytics (RFM)
-
-* RFM Analysis:
-
-  * **Recency** – How recently a customer purchased
-  * **Frequency** – How often they purchase
-  * **Monetary** – How much they spend
-* Automated RFM scoring (scale 1–5)
-* Customer segmentation based on RFM scores
-
-### 🔹 Cohort Analysis
-
-* Grouped customers by **first purchase month**
-* Analyzed customer retention behavior over time
-
-### 🔹 Market Basket Analysis
-
-* Applied **Apriori Algorithm** for association rule mining
-* Identified frequently purchased product combinations
-* Generated rules using:
-
-  * Support
-  * Confidence
-  * Lift
+* pandas
+* numpy
 
 ---
 
-## ⚠️ Risk & Retention Intelligence
+## 2️⃣ SQL Data Warehouse Integration
 
-### 🔸 Churn Risk Scoring
+* Stored cleaned data in MySQL
+* Created customer-level analytical table
+* Structured data for BI reporting
+* Used `.to_sql()` for automated table refresh
 
-* Rule-based churn logic using recency and purchase behavior
-* Classified customers into:
-
-  * High Risk
-  * Medium Risk
-  * Low Risk
-
-### 🔸 Revenue at Risk
-
-* Calculated potential revenue loss from high-risk customers
-
-### 🔸 Customer Priority Score
-
-* Combined churn risk with monetary value
-* Ranked customers by overall **business importance**
+Database: MySQL
+Connector: SQLAlchemy
 
 ---
 
-## 🤖 Machine Learning (Churn Model)
-
-* Built a **binary churn prediction model**
-* Trained and evaluated using classification metrics
-* Generated churn probabilities for each customer
-* Applied **probability calibration** for realistic and reliable risk scoring
+# 📊 Core Analytics
 
 ---
 
-## 🧠 Advanced Decision Logic
+## 🔹 Sales & Revenue Analysis
 
-### 🔹 Rule-Based vs ML Churn Comparison
-
-* Compared traditional business rules with ML-based predictions
-* Identified agreement and disagreement cases
-
-### 🔹 Decision Threshold Optimization
-
-* Tuned churn probability thresholds for improved business decisions
-
-### 🔹 Action Recommendation Engine
-
-Based on churn probability and customer priority, recommended actions such as:
-
-* Immediate Retention Call
-* Personalized Discount
-* Engagement Email
-* No Action Needed
+* Monthly revenue trends
+* Top-selling products
+* Country-wise revenue
+* Customer contribution analysis
 
 ---
 
-## 🧰 Technologies Used
+## 🔹 RFM Customer Segmentation
 
-* **Python**: pandas, numpy, scikit-learn, mlxtend
-* **SQL / MySQL**
-* **Machine Learning**: classification models, probability calibration
-* **Jupyter Notebook**
+RFM Metrics:
 
----
+* Recency → Days since last purchase
+* Frequency → Number of purchases
+* Monetary → Total spending
 
-## 📦 Final Outputs
+Automated scoring (1–5 scale)
 
-* Cleaned and structured **SQL database**
-* Customer segmentation and churn intelligence tables
-* Revenue-at-risk and customer priority scoring
-* Actionable insights to support **retention strategy**
+Generated segments such as:
 
----
-
-## 💡 Project Value
-
-This project demonstrates how **data analytics and machine learning** can be combined to:
-
-* Reduce customer churn
-* Protect and optimize revenue
-* Support business decision-making with **clear and explainable insights**
+* Champions
+* Loyal Customers
+* Promising
+* At Risk
+* Hibernating
 
 ---
 
-## 🚀 Future Improvements
+## 🔹 Cohort Analysis
 
-* Real-time data integration
-* Continuous model retraining with new data
-* A/B testing of retention strategies
-* Advanced **Customer Lifetime Value (CLV)** modeling
+* Grouped customers by first purchase month
+* Calculated retention rate over time
+* Identified drop-off patterns
 
 ---
 
-📌 *This project is designed to be practical, business-focused, and scalable for real-world retail analytics use cases.*
+## 🔹 Market Basket Analysis
+
+Used Apriori Algorithm:
+
+* Support
+* Confidence
+* Lift
+
+Identified product combinations for:
+
+* Cross-selling
+* Bundle strategy
+* Promotion planning
+
+Library: `mlxtend`
+
+---
+
+# ⚠️ Churn Intelligence System
+
+---
+
+## 🔸 Rule-Based Churn Risk
+
+Churn classification using Recency logic:
+
+* High Risk
+* Medium Risk
+* Low Risk
+
+Business-driven explainable logic.
+
+---
+
+## 🔸 Revenue at Risk
+
+Calculated:
+
+* Total revenue from high-risk customers
+* Revenue exposure percentage
+* Top high-risk revenue contributors
+
+---
+
+## 🔸 Customer Priority Score
+
+Combined:
+
+* Monetary value
+* Churn probability
+* Risk weight
+
+Generated ranked list of customers for retention strategy.
+
+---
+
+# 🤖 Machine Learning Churn Model
+
+Built binary classification model to predict churn.
+
+### Features Used:
+
+* Recency
+* Frequency
+* Monetary
+* RFM scores
+* Customer priority score
+
+### Outputs:
+
+* `ML_Churn_Probability`
+* `ML_Churn_Prediction`
+
+### Model Evaluation:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* Confusion Matrix
+
+Applied probability calibration for realistic business interpretation.
+
+---
+
+# 🧠 Decision & Action Engine
+
+Automated recommendation system:
+
+| Condition                 | Recommended Action       |
+| ------------------------- | ------------------------ |
+| High churn + High value   | Immediate Retention Call |
+| High churn + Medium value | Personalized Discount    |
+| Medium churn              | Engagement Email         |
+| Low churn                 | No Action                |
+
+This transforms ML output into business strategy.
+
+---
+
+# 📈 Power BI Dashboard
+
+Interactive Business Intelligence Dashboard includes:
+
+* Revenue Overview
+* Customer Segmentation Distribution
+* Churn Risk Distribution
+* Revenue at Risk KPI
+* Customer Priority Ranking
+* ML Churn Probability Visualization
+* Country Performance Analysis
+
+Power BI connected directly to MySQL for live refresh.
+
+---
+
+# 🔁 Automation System
+
+The system supports automation:
+
+### Automated Pipeline:
+
+1. Data refreshed
+2. Python script runs:
+
+   * Cleaning
+   * RFM
+   * Churn logic
+   * ML prediction
+3. Table replaced in MySQL
+4. Power BI auto-refreshes dashboard
+
+Can be automated using:
+
+* Windows Task Scheduler
+* Cron Jobs
+* Airflow (future scaling)
+
+This enables near real-time decision intelligence.
+
+---
+
+# 🧰 Technologies Used
+
+### Programming
+
+* Python
+* Jupyter Notebook
+
+### Libraries
+
+* pandas
+* numpy
+* scikit-learn
+* mlxtend
+* SQLAlchemy
+
+### Database
+
+* MySQL
+
+### Visualization
+
+* Power BI
+
+---
+
+# 📦 Final Outputs
+
+* Structured SQL Data Warehouse
+* Customer RFM Segmentation
+* Churn Intelligence Table
+* ML Probability Scores
+* Revenue at Risk Analysis
+* Automated Retention Recommendation
+* Power BI Executive Dashboard
+
+---
+
+# 💼 Business Value
+
+This system helps businesses:
+
+* Reduce churn proactively
+* Protect high-value customers
+* Identify revenue leakage
+* Improve retention ROI
+* Prioritize marketing spend
+* Make explainable ML decisions
+
+---
+
+# 🚀 Future Improvements
+
+* Real-time streaming integration
+* Advanced CLV modeling
+* Model retraining automation
+* Web-based dashboard deployment
+* A/B testing retention strategies
+* Deep learning churn modeling
+
+---
+
+# 👨‍💻 Author
+
+**Deven Sorathiya**
+PGD in Data Science & Analytics
+Retail Analytics & ML Intelligence Project
+
+---
+
+# 📌 Conclusion
+
+This project demonstrates a complete real-world analytics pipeline combining:
+
+Data Engineering
+Business Analytics
+Machine Learning
+Database Integration
+Automation
+Business Intelligence
+
+Designed for scalable retail intelligence systems.
+
+---
